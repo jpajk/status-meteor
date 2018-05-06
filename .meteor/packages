@@ -21,3 +21,5 @@ dynamic-import@0.3.0
 akryum:vue-router2
 vuejs:blaze-integration
 blaze-html-templates
+accounts-password
+akryum:vue-sass
