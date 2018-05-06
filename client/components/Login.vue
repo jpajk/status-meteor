@@ -1,7 +1,7 @@
 <template>
     <div class="col-sm-6 offset-3">
         <h2 class="text-center">Login or register</h2>
-        <b-form >
+        <b-form>
             <b-form-group
                     label="Email:"
                     label-for="email-input"
@@ -47,13 +47,18 @@ export default {
   },
   methods: {
     loginOrRegister () {
-      this.$store.dispatch('loginOrRegister', {email: this.email, password: this.password})
-        .then(res => {
-          this.$router.push({ name: 'Home' })
-        })
-        .catch(err => {
-          console.log(err) // todo messages
-        })
+
+      Meteor.loginWithPassword(this.email, this.password, (err) => {
+        if (err) {
+          this.relayMessage(err)
+          return
+        }
+
+        this.$router.push({name: 'Home'})
+      });
+    },
+    relayMessage(err) {
+      this.$store.dispatch('relayMessage', {type: 'error', message: err.message})
     }
   }
 }

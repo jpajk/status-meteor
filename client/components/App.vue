@@ -2,6 +2,7 @@
   <div id="app">
     <app-navbar/>
     <main role="main" class="container">
+      <app-messages/>
       <router-view/>
     </main>
   </div>
@@ -11,10 +12,11 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import AppNavbar from './Shared/AppNavbar'
+import AppMessages from "./Shared/AppMessages";
 
 export default {
   name: 'App',
-  components: {AppNavbar}
+  components: {AppMessages, AppNavbar}
 }
 </script>
 
