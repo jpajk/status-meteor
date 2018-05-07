@@ -48,9 +48,19 @@ export default {
   methods: {
     loginOrRegister () {
 
-      Meteor.loginWithPassword(this.email, this.password, (err) => {
+      Meteor.loginWithPassword({username: this.email}, this.password, (err) => {
         if (err) {
-          this.relayMessage(err)
+
+          if (err.error === 403) {
+            Accounts.createUser({
+              username: this.email, password: this.password
+            }, (err)  => {
+                this.relayMessage(err)
+            })
+          } else {
+            this.relayMessage(err)
+          }
+
           return
         }
 

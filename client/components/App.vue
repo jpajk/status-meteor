@@ -16,7 +16,14 @@ import AppMessages from "./Shared/AppMessages";
 
 export default {
   name: 'App',
-  components: {AppMessages, AppNavbar}
+  components: {AppMessages, AppNavbar},
+  created() {
+    Accounts.onLogin(() => {
+      if (Meteor.userId()) {
+        this.$router.push({ name: 'Home' })
+      }
+    })
+  }
 }
 </script>
 
