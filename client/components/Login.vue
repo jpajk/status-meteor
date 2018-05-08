@@ -70,13 +70,6 @@ export default {
     relayMessage(err) {
       this.$store.dispatch('relayMessage', {type: 'error', message: err.message})
     }
-  },
-  created() {
-    Accounts.onLogin(() => {
-      if (Meteor.userId()) {
-        this.$router.push({ name: 'Home' })
-      }
-    })
   }
 }
 </script>

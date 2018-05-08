@@ -6,6 +6,7 @@ if (Statuses.find().count() === 0) {
     Statuses.insert({
       message: faker.name.findName(),
       userId: 'grpMnw6grnCxyywn3',
+      created: (new Date()).getTime()
     });
   }
 }

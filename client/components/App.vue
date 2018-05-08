@@ -3,7 +3,9 @@
     <app-navbar/>
     <main role="main" class="container">
       <app-messages/>
-      <router-view/>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
     </main>
   </div>
 </template>
@@ -17,16 +19,16 @@ import AppMessages from "./Shared/AppMessages";
 export default {
   name: 'App',
   components: {AppMessages, AppNavbar},
-  created() {
-    Accounts.onLogin(() => {
-      if (Meteor.userId()) {
-        this.$router.push({ name: 'Home' })
-      }
-    })
-  }
 }
 </script>
 
 <style lang="scss">
   @import './assets/scss/styles.scss';
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 </style>
